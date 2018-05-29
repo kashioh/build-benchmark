@@ -8,12 +8,21 @@ pwd
 ls -l
 CORE_COUNT="$(grep -c ^processor /proc/cpuinfo)"
 
-if [ "$1" = 'linux-4.14.43' ]; then
-    time tar xf linux*
-    cd $1
-    time make defconfig
-    time make -j ${CORE_COUNT}
-else
-    echo "Please run: docker run --user user --rm -it build-benchmark [linux-4.14.43]"
-fi
+case "$1" in
+    "linux-4.14.43"|linux)
+        time tar xf linux*
+        cd linux-4.14.43
+        time make defconfig
+        time make -j ${CORE_COUNT}
+        ;;
+    "qt-everywhere-opensource-src-5.7.1"|qt)
+        time tar xf qt-everywhere-opensource-src-5.7.1.tar.gz
+        cd qt-everywhere-opensource-src-5.7.1
+        time ./configure -opensource -confirm-license
+        time make -j ${CORE_COUNT}
+        ;;
+    *)
+        echo "Please run: docker run --user user --rm -i build-benchmark [linux-4.14.43|qt-everywhere-opensource-src-5.7.1]"
+        ;;
+esac
 
