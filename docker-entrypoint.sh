@@ -22,14 +22,14 @@ case "$1" in
         time make defconfig
         time make -j ${CORE_COUNT}
         ;;
-    "qt-everywhere-opensource-src-5.7.1"|qt)
-        time tar xf qt-everywhere-opensource-src-5.7.1.tar.gz
-        cd qt-everywhere-opensource-src-5.7.1
-        time ./configure -opensource -confirm-license -no-compile-examples
+    "qt-everywhere-opensource-src-5.9.5"|qt)
+        time tar xf qt-everywhere-opensource-src-5.9.5.tar.xz
+        cd qt-everywhere-opensource-src-5.9.5
+        time ./configure -opensource -confirm-license -no-compile-examples -nomake examples
         time make -j ${CORE_COUNT}
         ;;
     *)
-        echo "Please run: docker run --user user --rm -i build-benchmark [linux-4.14.43|qt-everywhere-opensource-src-5.7.1] [n jobs]"
+        echo "Please run: docker run --user user --rm -i build-benchmark [linux-4.14.43|linux|qt-everywhere-opensource-src-5.9.5|qt] [n jobs]"
         ;;
 esac
 
