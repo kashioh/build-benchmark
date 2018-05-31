@@ -34,7 +34,7 @@ RUN cd /home/user && \
     wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.43.tar.xz
 
 RUN cd /home/user && \
-    wget http://download.qt.io/official_releases/qt/5.7/5.7.1/single/qt-everywhere-opensource-src-5.7.1.tar.gz
+    wget http://download.qt.io/official_releases/qt/5.9/5.9.5/single/qt-everywhere-opensource-src-5.9.5.tar.xz
 
 COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
