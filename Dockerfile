@@ -27,7 +27,7 @@ RUN apt-get update && \
         libxrandr-dev libxrender-dev libxss-dev libxtst-dev perl python ruby \
         libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev x11proto-print-dev libxslt1-dev libssl1.0-dev
 
-RUN groupadd -r user && useradd --no-log-init -r -g user user && mkdir /home/user && chown user:user /home/user
+RUN groupadd -g 1000 user && useradd --no-log-init -r -g 1000 -u 1000 user && mkdir /home/user && chown user:user /home/user
 
 USER user
 RUN cd /home/user && \
@@ -42,4 +42,3 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 
 USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
