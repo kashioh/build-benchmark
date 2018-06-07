@@ -47,7 +47,7 @@ case "$1" in
         ;;
 esac
 
-cd ..
+cd ../../
 echo "Build done, cleanup..."
 du -hs output
 time rm -rf output
